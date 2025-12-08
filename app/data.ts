@@ -72,7 +72,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'Weather Web',
     description: 'A weather web application built with React and JavaScript. Get real-time weather updates for any location.',
-    link: 'https://github.com/EltonMustafaj/weatherapp',
+    link: 'https://weatherapp-xi-inky.vercel.app/',
     githubLink: 'https://github.com/EltonMustafaj/weatherapp',
     linkTab: true,
     media: '/assets/weather.jpg',
