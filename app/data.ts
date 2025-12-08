@@ -2,6 +2,7 @@ type Project = {
   name: string
   description: string
   link: string
+  githubLink?: string
   linkTab?: boolean
   media: string
   mediaType?: 'image' | 'video'
@@ -51,7 +52,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'JobPlatform',
     description: 'A mobile job platform built with React Native, Supabase, and Expo Go. Connects job seekers with employers seamlessly.',
-    link: 'https://github.com/EltonMustafaj',
+    link: 'https://github.com/EltonMustafaj/JobPlatform',
+    githubLink: 'https://github.com/EltonMustafaj/JobPlatform',
     linkTab: true,
     media: '/assets/jobplatform.jpg',
     mediaType: 'image',
@@ -60,7 +62,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'DigitalCar',
     description: 'Digital car documentation app using React Native, Supabase, and Expo Go. Manage vehicle documents on the go.',
-    link: 'https://github.com/EltonMustafaj',
+    link: 'https://github.com/EltonMustafaj/DigitalCar',
+    githubLink: 'https://github.com/EltonMustafaj/DigitalCar',
     linkTab: true,
     media: '/assets/digitalcar.jpg',
     mediaType: 'image',
@@ -69,7 +72,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'Weather Web',
     description: 'A weather web application built with React and JavaScript. Get real-time weather updates for any location.',
-    link: 'https://github.com/EltonMustafaj',
+    link: 'https://github.com/EltonMustafaj/weatherapp',
+    githubLink: 'https://github.com/EltonMustafaj/weatherapp',
     linkTab: true,
     media: '/assets/weather.jpg',
     mediaType: 'image',
@@ -78,7 +82,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'KosovaBestPlace',
     description: 'Tourism website showcasing the best places in Kosovo. Built with React featuring interactive maps and galleries.',
-    link: 'https://github.com/EltonMustafaj',
+    link: 'https://turizmikosova.netlify.app/',
+    githubLink: 'https://github.com/EltonMustafaj/weatherapp',
     linkTab: true,
     media: '/assets/kosovo.jpg',
     mediaType: 'image',
@@ -87,7 +92,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'NikeShoes',
     description: 'Full-stack e-commerce platform for Nike shoes. Built with React and Supabase with complete shopping functionality.',
-    link: 'https://github.com/EltonMustafaj',
+    link: 'https://agent-6934811a86dfbe44e5e6a875--nikeshoes123.netlify.app/',
+    githubLink: 'https://github.com/EltonMustafaj/weatherapp',
     linkTab: true,
     media: '/assets/nike.jpg',
     mediaType: 'image',

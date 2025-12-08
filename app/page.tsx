@@ -41,11 +41,46 @@ const TRANSITION_SECTION = {
 
 type ProjectMediaProps = {
   src: string
+  link?: string
 }
 
-function ProjectMedia({ src }: ProjectMediaProps) {
+function ProjectMedia({ src, link }: ProjectMediaProps) {
   const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.indexOf('cloudinary') !== -1;
   const isImage = src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.png') || src.endsWith('.gif') || src.endsWith('.webp');
+
+  const mediaElement = isVideo ? (
+    <video
+      src={src}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="aspect-video w-full rounded-xl"
+    />
+  ) : isImage ? (
+    <img
+      src={src}
+      alt="Project screenshot"
+      className="aspect-video w-full rounded-xl object-cover"
+    />
+  ) : (
+    <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
+      No media available
+    </div>
+  )
+
+  if (link) {
+    return (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block cursor-pointer transition-opacity hover:opacity-90"
+      >
+        {mediaElement}
+      </a>
+    )
+  }
 
   return (
     <MorphingDialog
@@ -56,26 +91,9 @@ function ProjectMedia({ src }: ProjectMediaProps) {
       }}
     >
       <MorphingDialogTrigger>
-        {isVideo ? (
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="aspect-video w-full cursor-zoom-in rounded-xl"
-          />
-        ) : isImage ? (
-          <img
-            src={src}
-            alt="Project screenshot"
-            className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
-          />
-        ) : (
-          <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-            No media available
-          </div>
-        )}
+        <div className="cursor-zoom-in">
+          {mediaElement}
+        </div>
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
         <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
@@ -247,7 +265,7 @@ export default function Personal() {
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectMedia src={project.media} />
+                <ProjectMedia src={project.media} link={project.link} />
               </div>
               <div className="px-1">
                 <a
@@ -261,17 +279,19 @@ export default function Personal() {
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
                 </p>
-                <div className="pt-2">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-                  >
-                    <Github className="h-4 w-4" />
-                    <span>View on GitHub</span>
-                  </a>
-                </div>
+                {project.githubLink && (
+                  <div className="pt-2">
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                    >
+                      <Github className="h-4 w-4" />
+                      <span>View on GitHub</span>
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}
