@@ -1,13 +1,19 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronDown, ArrowLeft } from "lucide-react"
 import { Button } from "./button"
 import { Input } from "./input"
 import { Label } from "./label"
 import { Textarea } from "./textarea"
 import { toast } from "sonner"
+import emailjs from '@emailjs/browser'
+
+// EmailJS Configuration - loaded from environment variables
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || ''
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || ''
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
 
 type CompactConnectFormProps = {
   expandOnMount?: boolean
@@ -19,10 +25,15 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
   const [message, setMessage] = useState("")
   const [isExpanded, setIsExpanded] = useState(expandOnMount)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const emailInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (expandOnMount) {
       setIsExpanded(true)
+      // Focus on email input when expanded
+      setTimeout(() => {
+        emailInputRef.current?.focus()
+      }, 150)
     }
   }, [expandOnMount])
 
@@ -31,42 +42,57 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
     setIsSubmitting(true)
 
     if (!email.trim()) {
-      toast.error("Please enter your email address")
+      toast.error("Ju lutem vendosni email adresën tuaj")
       setIsSubmitting(false)
       return
     }
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email.trim(),
-          name: name.trim(),
-          message: message.trim(),
-        }),
-      })
+      // Initialize EmailJS
+      emailjs.init(EMAILJS_PUBLIC_KEY)
 
-      const data = await response.json()
+      // Template parameters - these names must match your EmailJS template
+      const templateParams = {
+        from_name: name.trim() || 'Anonymous',
+        from_email: email.trim(),
+        message: message.trim() || 'No message provided',
+        to_name: 'Elton Mustafaj',
+      }
 
-      if (response.ok) {
-        toast.success(isExpanded ? "Your detailed message has been sent!" : "You're connected! I'll be in touch soon.")
+      console.log('Sending email with params:', templateParams)
+
+      // Send email
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      )
+
+      console.log('EmailJS response:', response)
+
+      if (response.status === 200) {
+        toast.success(isExpanded ? "Mesazhi juaj u dërgua me sukses!" : "U lidhët me sukses! Do t'ju kontaktoj së shpejti.")
         setEmail("")
         setName("")
         setMessage("")
         setIsExpanded(false)
-      } else if (response.status === 429) {
-        toast.error("Too many requests. Please wait a some time before trying again.", {
-          duration: 5000,
-          description: "This helps prevent spam and ensures everyone can use the form."
+      } else {
+        toast.error("Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri.")
+      }
+    } catch (error: any) {
+      console.error('EmailJS error details:', error)
+
+      if (error?.status === 412) {
+        toast.error("Gabim në konfigurimin e template-it. Ju lutem kontaktoni administratorin.", {
+          description: "Template-i në EmailJS nuk është konfiguruar saktë."
+        })
+      } else if (error?.text) {
+        toast.error("Gabim në dërgimin e emailit", {
+          description: error.text
         })
       } else {
-        toast.error(data.error || "Failed to send message. Please try again later.")
+        toast.error("Ndodhi një gabim i papritur. Ju lutem provoni përsëri.")
       }
-    } catch (error) {
-      toast.error("An unexpected error occurred. Please try again later.")
     } finally {
       setIsSubmitting(false)
     }
@@ -128,6 +154,7 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
                   Email
                 </Label>
                 <Input
+                  ref={emailInputRef}
                   id="email"
                   type="email"
                   placeholder="your@email.com"
