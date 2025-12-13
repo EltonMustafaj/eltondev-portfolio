@@ -101,6 +101,19 @@ export const PROJECTS: Project[] = [
   }
 ]
 
+export const WORK: PracticeItem[] = [
+  {
+    company: 'QKUK (Main University Clinical Center of Kosovo)',
+    role: 'Software Developer (Patient Management System)',
+    start: 'Jun 2025',
+    end: 'Present',
+    link: 'https://shskuk.rks-gov.net/',
+    logo: '/assets/qkuk.jpg',
+    summary: 'Developing a Patient Management System for QKUK using React (Vite) and Node.js.',
+    id: 'work-qkuk',
+  },
+]
+
 export const EDUCATION: EducationItem[] = [
   {
     institution: 'AAB College',
@@ -121,19 +134,6 @@ export const EDUCATION: EducationItem[] = [
     logo: '/assets/tectigon.jpg',
     details: 'Completed a full-stack program covering frontend, backend, deployment; certified in Full Stack.',
     id: 'edu-tectigon',
-  },
-]
-
-export const PRACTICE: PracticeItem[] = [
-  {
-    company: 'AAB College',
-    role: 'Software Development Internship',
-    start: 'Jun 2025',
-    end: 'Present',
-    link: 'https://www.aab-edu.net/',
-    logo: '/assets/aab.jpg',
-    summary: 'Hands-on practice building internal tools; June 2025 – Present (ongoing 2025).',
-    id: 'practice-aab',
   },
 ]
 
@@ -165,7 +165,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'LinkedIn',
-    link: 'https://linkedin.com/in/elton-mustafaj',
+    link: 'https://www.linkedin.com/in/elton-mustafaj-355ba5397/',
   },
   {
     label: 'Email',
