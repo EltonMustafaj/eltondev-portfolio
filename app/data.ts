@@ -38,6 +38,15 @@ type BlogPost = {
   uid: string
 }
 
+type CaseStudy = {
+  title: string
+  description: string
+  link: string
+  image: string
+  tags: string[]
+  id: string
+}
+
 type SocialLink = {
   label: string
   link: string
@@ -98,6 +107,15 @@ export const PROJECTS: Project[] = [
     media: '/assets/nike.jpg',
     mediaType: 'image',
     id: 'project5',
+  },
+  {
+    name: 'Pepsi Albania',
+    description: 'Modern, interactive product showcase website for Pepsi with smooth animations and engaging user experience.',
+    link: 'https://pepsi-peach.vercel.app/',
+    linkTab: true,
+    media: '/assets/pepsi.jpg',
+    mediaType: 'image',
+    id: 'project6',
   }
 ]
 
@@ -134,6 +152,33 @@ export const EDUCATION: EducationItem[] = [
     logo: '/assets/tectigon.jpg',
     details: 'Completed a full-stack program covering frontend, backend, deployment; certified in Full Stack.',
     id: 'edu-tectigon',
+  },
+]
+
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    title: 'Pepsi Albania - Interactive Product Showcase',
+    description: 'Modern, interactive product showcase website for Pepsi with smooth animations and engaging user experience.',
+    link: '/case-studies/pepsi',
+    image: '/assets/pepsi-showcase.jpg',
+    tags: ['Next.js', 'Framer Motion', 'Tailwind CSS'],
+    id: 'case-pepsi',
+  },
+  {
+    title: 'Stock Desk - Internal Stock Management System',
+    description: 'Internal stock lookup and booking system for a multi-store furniture brand to solve stock coordination issues.',
+    link: '/case-studies/stock-desk',
+    image: '/assets/F3/ScreenShot4.png',
+    tags: ['React', 'Node.js', 'ERP Integration'],
+    id: 'case-stock',
+  },
+  {
+    title: 'FFreed - Account Abstraction SDK',
+    description: 'Developer-friendly SDK for Ethereum account abstraction with wallet-less onboarding and gas sponsorship.',
+    link: '/case-studies/ffreed',
+    image: '/assets/ffreed-image.jpg',
+    tags: ['Web3', 'ERC-4337', 'SDK'],
+    id: 'case-ffreed',
   },
 ]
 
