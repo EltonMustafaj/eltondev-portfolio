@@ -226,82 +226,6 @@ export default function Personal() {
         </motion.section>
 
         <motion.section
-          ref={contactRef}
-          variants={VARIANTS_SECTION}
-          transition={TRANSITION_SECTION}
-        >
-          <h3 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">📬 Get In Touch</h3>
-          <div className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30">
-            <Spotlight
-              className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-              size={64}
-            />
-            <div className="relative h-full w-full rounded-[15px] bg-white p-4 sm:p-6 dark:bg-zinc-950">
-              <p className="mb-4 sm:mb-6 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                Interested in collaborating on a project or just want to connect?
-                Feel free to reach out!
-              </p>
-              <div className="space-y-4">
-                <CompactConnectForm expandOnMount={expandContactForm} />
-                <div className="border-t border-zinc-200 pt-4 dark:border-zinc-800">
-                  <p className="mb-3 text-xs text-zinc-500 dark:text-zinc-500">Connect with me</p>
-                  <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-3">
-                    {SOCIAL_LINKS.map((link) => (
-                      <MagneticSocialLink key={link.label} link={link.link}>
-                        {link.label}
-                      </MagneticSocialLink>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.section>
-
-        <motion.section
-          ref={projectsRef}
-          variants={VARIANTS_SECTION}
-          transition={TRANSITION_SECTION}
-        >
-          <h3 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">Projects</h3>
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
-            {PROJECTS.map((project) => (
-              <div key={project.name} className="space-y-2">
-                <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                  <ProjectMedia src={project.media} link={project.link} />
-                </div>
-                <div className="px-1">
-                  <a
-                    className="font-base group relative inline-block font-[450] text-sm sm:text-base text-zinc-900 dark:text-zinc-50"
-                    href={project.link}
-                    {...(project.linkTab && { target: "_blank" })}
-                  >
-                    {project.name}
-                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                  </a>
-                  <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                    {project.description}
-                  </p>
-                  {project.githubLink && (
-                    <div className="pt-2">
-                      <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs sm:text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-                      >
-                        <Github className="h-3 w-3 sm:h-4 sm:w-4" />
-                        <span>View on GitHub</span>
-                      </a>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        <motion.section
           ref={educationRef}
           variants={VARIANTS_SECTION}
           transition={TRANSITION_SECTION}
@@ -365,6 +289,82 @@ export default function Personal() {
                 </div>
               </a>
             ))}
+          </div>
+        </motion.section>
+
+        <motion.section
+          ref={projectsRef}
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">Projects</h3>
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
+            {PROJECTS.map((project) => (
+              <div key={project.name} className="space-y-2">
+                <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+                  <ProjectMedia src={project.media} link={project.link} />
+                </div>
+                <div className="px-1">
+                  <a
+                    className="font-base group relative inline-block font-[450] text-sm sm:text-base text-zinc-900 dark:text-zinc-50"
+                    href={project.link}
+                    {...(project.linkTab && { target: "_blank" })}
+                  >
+                    {project.name}
+                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  </a>
+                  <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
+                    {project.description}
+                  </p>
+                  {project.githubLink && (
+                    <div className="pt-2">
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs sm:text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                      >
+                        <Github className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span>View on GitHub</span>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        <motion.section
+          ref={contactRef}
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">📬 Get In Touch</h3>
+          <div className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30">
+            <Spotlight
+              className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+              size={64}
+            />
+            <div className="relative h-full w-full rounded-[15px] bg-white p-4 sm:p-6 dark:bg-zinc-950">
+              <p className="mb-4 sm:mb-6 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
+                Interested in collaborating on a project or just want to connect?
+                Feel free to reach out!
+              </p>
+              <div className="space-y-4">
+                <CompactConnectForm expandOnMount={expandContactForm} />
+                <div className="border-t border-zinc-200 pt-4 dark:border-zinc-800">
+                  <p className="mb-3 text-xs text-zinc-500 dark:text-zinc-500">Connect with me</p>
+                  <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-3">
+                    {SOCIAL_LINKS.map((link) => (
+                      <MagneticSocialLink key={link.label} link={link.link}>
+                        {link.label}
+                      </MagneticSocialLink>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.section>
 

@@ -112,6 +112,7 @@ export const PROJECTS: Project[] = [
     name: 'Pepsi Albania',
     description: 'Modern, interactive product showcase website for Pepsi with smooth animations and engaging user experience.',
     link: 'https://pepsi-peach.vercel.app/',
+    githubLink: 'https://github.com/EltonMustafaj/Pepsi',
     linkTab: true,
     media: '/assets/pepsi.jpg',
     mediaType: 'image',
