@@ -8,12 +8,8 @@ import { Input } from "./input"
 import { Label } from "./label"
 import { Textarea } from "./textarea"
 import { toast } from "sonner"
-import emailjs from '@emailjs/browser'
-
-// EmailJS Configuration - loaded from environment variables
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || ''
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || ''
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
+// FormSubmit configuration
+const FORMSUBMIT_EMAIL = 'eltoni.mustafaj1@gmail.com'
 
 type CompactConnectFormProps = {
   expandOnMount?: boolean
@@ -48,51 +44,38 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
     }
 
     try {
-      // Initialize EmailJS
-      emailjs.init(EMAILJS_PUBLIC_KEY)
+      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim() || "Anonymous",
+          email: email.trim(),
+          message: message.trim() || "No message provided",
+          _subject: `New contact from ${name || email}`,
+        }),
+      })
 
-      // Template parameters - these names must match your EmailJS template
-      const templateParams = {
-        from_name: name.trim() || 'Anonymous',
-        from_email: email.trim(),
-        message: message.trim() || 'No message provided',
-        to_name: 'Elton Mustafaj',
-      }
+      const result = await response.json()
+      console.log("FormSubmit result:", result)
 
-      console.log('Sending email with params:', templateParams)
-
-      // Send email
-      const response = await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams
-      )
-
-      console.log('EmailJS response:', response)
-
-      if (response.status === 200) {
-        toast.success(isExpanded ? "Mesazhi juaj u dërgua me sukses!" : "U lidhët me sukses! Do t'ju kontaktoj së shpejti.")
+      if (result.success === "true" || result.success === true) {
+        toast.success(
+          isExpanded ? "Mesazhi juaj u dërgua me sukses!" : "U lidhët me sukses! Do t'ju kontaktoj së shpejti.",
+        )
         setEmail("")
         setName("")
         setMessage("")
         setIsExpanded(false)
       } else {
-        toast.error("Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri.")
+        const errorMessage = result.message || "Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri."
+        toast.error(errorMessage)
       }
-    } catch (error: any) {
-      console.error('EmailJS error details:', error)
-
-      if (error?.status === 412) {
-        toast.error("Gabim në konfigurimin e template-it. Ju lutem kontaktoni administratorin.", {
-          description: "Template-i në EmailJS nuk është konfiguruar saktë."
-        })
-      } else if (error?.text) {
-        toast.error("Gabim në dërgimin e emailit", {
-          description: error.text
-        })
-      } else {
-        toast.error("Ndodhi një gabim i papritur. Ju lutem provoni përsëri.")
-      }
+    } catch (error) {
+      console.error("FormSubmit error:", error)
+      toast.error("Ndodhi një gabim i papritur. Ju lutem provoni përsëri.")
     } finally {
       setIsSubmitting(false)
     }
@@ -105,6 +88,7 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
           <div className="flex items-center space-x-3">
             <Input
               type="email"
+              name="email"
               placeholder="your@email.com"
               value={email}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
@@ -156,6 +140,7 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
                 <Input
                   ref={emailInputRef}
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="your@email.com"
                   value={email}
@@ -172,6 +157,7 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
                 </Label>
                 <Input
                   id="name"
+                  name="name"
                   placeholder="Your name"
                   value={name}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
@@ -186,6 +172,7 @@ export function CompactConnectForm({ expandOnMount = false }: CompactConnectForm
                 </Label>
                 <Textarea
                   id="message"
+                  name="message"
                   placeholder="What would you like to discuss?"
                   value={message}
                   onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
