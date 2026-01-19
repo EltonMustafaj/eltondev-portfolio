@@ -59,12 +59,12 @@ type Skill = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'JobPlatform',
-    description: 'A mobile job platform built with React Native, Supabase, and Expo Go. Connects job seekers with employers seamlessly.',
-    link: 'https://github.com/EltonMustafaj/JobPlatform',
-    githubLink: 'https://github.com/EltonMustafaj/JobPlatform',
+    name: 'FronBar',
+    description: 'A modern, interactive website for Fron Bar, a local business in Istog, Kosovo. Features a digital menu, smooth animations, and an optimized mobile experience.',
+    link: 'https://fronbar.vercel.app/',
+    githubLink: 'https://github.com/EltonMustafaj/Fron',
     linkTab: true,
-    media: '/assets/jobplatform.jpg',
+    media: '/assets/fronbar.png',
     mediaType: 'image',
     id: 'project1',
   },
