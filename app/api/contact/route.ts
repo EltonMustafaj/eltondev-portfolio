@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimiter } from '@/app/lib/rate-limiter'
 import { Resend } from 'resend'
+import { env } from '@/app/env'
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
+const resend = env.RESEND_API_KEY ? new Resend(env.RESEND_API_KEY) : null
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,8 +30,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if at least one notification method is configured
-    const webhookUrl = process.env.DISCORD_WEBHOOK_URL
-    const emailTo = process.env.EMAIL_TO
+    const webhookUrl = env.DISCORD_WEBHOOK_URL
+    const emailTo = env.EMAIL_TO
+    const resendFrom = env.RESEND_FROM || 'Contact Form <onboarding@resend.dev>'
     
     if (!webhookUrl && !resend) {
       console.error('No notification method configured (DISCORD_WEBHOOK_URL or RESEND_API_KEY)')
@@ -81,7 +83,7 @@ export async function POST(request: NextRequest) {
     if (resend && emailTo) {
       try {
         await resend.emails.send({
-          from: 'Contact Form <onboarding@resend.dev>',
+          from: resendFrom,
           to: emailTo,
           replyTo: email,
           subject: `New Contact Form: ${name || email}`,

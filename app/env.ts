@@ -4,12 +4,14 @@ const envSchema = z.object({
   DISCORD_WEBHOOK_URL: z.string().url().optional(),
   RESEND_API_KEY: z.string().optional(),
   EMAIL_TO: z.string().email().optional(),
+  RESEND_FROM: z.string().optional(),
 })
 
 export const env = envSchema.parse({
   DISCORD_WEBHOOK_URL: process.env.DISCORD_WEBHOOK_URL,
   RESEND_API_KEY: process.env.RESEND_API_KEY,
   EMAIL_TO: process.env.EMAIL_TO,
+  RESEND_FROM: process.env.RESEND_FROM,
 })
 
 declare global {

@@ -298,9 +298,12 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <h3 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">Projects</h3>
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
-            {PROJECTS.map((project) => (
-              <div key={project.name} className="space-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+            {PROJECTS.map((project, index) => (
+              <div
+                key={project.name}
+                className={`space-y-2 pb-6 pt-6 sm:px-6 ${index >= 2 ? 'border-t border-zinc-200 dark:border-zinc-800' : ''} ${index % 2 === 1 ? 'sm:border-l sm:border-zinc-200 sm:dark:border-zinc-800' : ''} ${index < 2 ? 'pt-0' : ''}`}
+              >
                 <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                   <ProjectMedia src={project.media} link={project.link} />
                 </div>
@@ -325,7 +328,7 @@ export default function Personal() {
                         className="inline-flex items-center gap-1 text-xs sm:text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
                       >
                         <Github className="h-3 w-3 sm:h-4 sm:w-4" />
-                        <span>View on GitHub</span>
+                        <span>Source</span>
                       </a>
                     </div>
                   )}
@@ -352,7 +355,7 @@ export default function Personal() {
                 Feel free to reach out!
               </p>
               <div className="space-y-4">
-                <CompactConnectForm expandOnMount={expandContactForm} />
+                <CompactConnectForm expandOnMount={expandContactForm} alwaysExpanded />
                 <div className="border-t border-zinc-200 pt-4 dark:border-zinc-800">
                   <p className="mb-3 text-xs text-zinc-500 dark:text-zinc-500">Connect with me</p>
                   <div className="flex flex-wrap items-center justify-start gap-2 sm:gap-3">
