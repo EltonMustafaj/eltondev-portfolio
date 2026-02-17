@@ -29,7 +29,7 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
       setIsExpanded(true)
       // Focus on email input when expanded
       setTimeout(() => {
-        emailInputRef.current?.focus()
+        emailInputRef.current?.focus({ preventScroll: true })
       }, 150)
     }
   }, [expandOnMount, alwaysExpanded])
