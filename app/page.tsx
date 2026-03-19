@@ -209,13 +209,15 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <div className="flex flex-col items-center gap-4 sm:gap-6 md:flex-row md:items-start">
-            <motion.img
-              src="/profile.png"
-              alt="Elton Mustafaj"
-              className="h-32 w-32 sm:h-40 sm:w-40 rounded-2xl object-cover ring-2 ring-zinc-200 dark:ring-zinc-800"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            />
+            <motion.div
+              className="h-32 w-32 sm:h-40 sm:w-40 overflow-hidden rounded-2xl ring-2 ring-zinc-200 dark:ring-zinc-800"
+            >
+              <img
+                src="/newnewpic.png"
+                alt="Elton Mustafaj"
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
             <div className="flex-1 text-center md:text-left">
               <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
                 21-year-old Computer Science Student focusing on Software Engineering. I develop as a Full Stack Web and Mobile Developer,

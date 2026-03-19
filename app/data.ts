@@ -59,6 +59,15 @@ type Skill = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Veturaime',
+    description: 'Modern web platform for Veturaime with a clean browsing experience and responsive interface.',
+    link: 'https://veturaime.online',
+    linkTab: true,
+    media: '/assets/veturaime.jpg',
+    mediaType: 'image',
+    id: 'project1',
+  },
+  {
     name: 'FronBar',
     description: 'A modern, interactive website for Fron Bar, a local business in Istog, Kosovo. Features a digital menu, smooth animations, and an optimized mobile experience.',
     link: 'https://fronbar.vercel.app/',
@@ -66,47 +75,7 @@ export const PROJECTS: Project[] = [
     linkTab: true,
     media: '/assets/fronbar.png',
     mediaType: 'image',
-    id: 'project1',
-  },
-  {
-    name: 'DigitalCar',
-    description: 'Digital car documentation app using React Native, Supabase, and Expo Go. Manage vehicle documents on the go.',
-    link: 'https://github.com/EltonMustafaj/DigitalCar',
-    githubLink: 'https://github.com/EltonMustafaj/DigitalCar',
-    linkTab: true,
-    media: '/assets/digitalcar.jpg',
-    mediaType: 'image',
     id: 'project2',
-  },
-  {
-    name: 'Weather Web',
-    description: 'A weather web application built with React and JavaScript. Get real-time weather updates for any location.',
-    link: 'https://weatherapp-xi-inky.vercel.app/',
-    githubLink: 'https://github.com/EltonMustafaj/weatherapp',
-    linkTab: true,
-    media: '/assets/weather.jpg',
-    mediaType: 'image',
-    id: 'project3',
-  },
-  {
-    name: 'UnitConverter',
-    description: 'A versatile unit conversion application built with React. Supports multiple categories including currency, temperature, and weight with real-time updates.',
-    link: 'https://unitconverter-khaki.vercel.app/',
-    githubLink: 'https://github.com/EltonMustafaj/UnitConverter',
-    linkTab: true,
-    media: '/assets/unitconverter.png',
-    mediaType: 'image',
-    id: 'project4',
-  },
-  {
-    name: 'NikeShoes',
-    description: 'Full-stack e-commerce platform for Nike shoes. Built with React and Supabase with complete shopping functionality.',
-    link: 'https://agent-6934811a86dfbe44e5e6a875--nikeshoes123.netlify.app/',
-    githubLink: 'https://github.com/EltonMustafaj/weatherapp',
-    linkTab: true,
-    media: '/assets/nike.jpg',
-    mediaType: 'image',
-    id: 'project5',
   },
   {
     name: 'Pepsi Albania',
@@ -116,7 +85,7 @@ export const PROJECTS: Project[] = [
     linkTab: true,
     media: '/assets/pepsi.jpg',
     mediaType: 'image',
-    id: 'project6',
+    id: 'project3',
   }
 ]
 
