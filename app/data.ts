@@ -6,6 +6,8 @@ type Project = {
   linkTab?: boolean
   media: string
   mediaType?: 'image' | 'video'
+  mediaZoom?: number
+  mediaPosition?: string
   id: string
 }
 
@@ -65,6 +67,8 @@ export const PROJECTS: Project[] = [
     linkTab: true,
     media: '/assets/veturaime.jpg',
     mediaType: 'image',
+    mediaZoom: 1.4,
+    mediaPosition: '58% center',
     id: 'project1',
   },
   {
@@ -180,11 +184,15 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/elton-mustafaj-355ba5397/',
+    link: 'https://www.linkedin.com/in/eltonmustafaj/',
   },
   {
     label: 'Email',
     link: 'mailto:eltoni.mustafaj1@gmail.com',
+  },
+  {
+    label: 'Resume',
+    link: '/portfolioAL.docx',
   },
 ]
 

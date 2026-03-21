@@ -6,8 +6,6 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 type HeaderProps = {
-  onContactClick?: () => void
-  onProjectsClick?: () => void
   onEducationClick?: () => void
 }
 
@@ -44,7 +42,7 @@ function ThemeSwitch() {
   )
 }
 
-export function Header({ onContactClick, onProjectsClick, onEducationClick }: HeaderProps) {
+export function Header({ onEducationClick }: HeaderProps) {
   return (
     <header className="mb-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -67,26 +65,26 @@ export function Header({ onContactClick, onProjectsClick, onEducationClick }: He
             <ThemeSwitch />
           </div>
         </div>
-        <div className="flex items-center justify-between gap-4 sm:gap-6">
-          <nav className="flex items-center gap-3 text-sm sm:gap-4 md:gap-6">
-            <button
-              onClick={onProjectsClick}
+        <div className="flex w-full items-center justify-start gap-4 sm:w-auto sm:justify-between sm:gap-6">
+          <nav className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] sm:gap-4 sm:text-sm md:gap-6">
+            <Link
+              href="/projects"
               className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
             >
               Projects
-            </button>
+            </Link>
             <button
               onClick={onEducationClick}
               className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
             >
               Work & Education
             </button>
-            <button
-              onClick={onContactClick}
+            <Link
+              href="/contact"
               className="text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
             >
               Contact
-            </button>
+            </Link>
           </nav>
           <div className="hidden sm:block">
             <ThemeSwitch />

@@ -9,8 +9,6 @@ import { Label } from "./label"
 import { Textarea } from "./textarea"
 import { toast } from "sonner"
 
-const FORMSUBMIT_EMAIL = "eltoni.mustafaj1@gmail.com"
-
 type CompactConnectFormProps = {
   expandOnMount?: boolean
   alwaysExpanded?: boolean
@@ -45,24 +43,21 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
     }
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
+      const response = await fetch('/api/contact', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
         body: JSON.stringify({
           name: name.trim() || "Anonymous",
           email: email.trim(),
           message: message.trim() || "No message provided",
-          _subject: `New contact from ${name || email}`,
         }),
       })
 
-      const result = await response.json()
-      console.log("FormSubmit result:", result)
+      const result = await response.json().catch(() => null)
 
-      if (result.success === "true" || result.success === true) {
+      if (response.ok) {
         toast.success(
           isExpanded ? "Mesazhi juaj u dërgua me sukses!" : "U lidhët me sukses! Do t'ju kontaktoj së shpejti.",
         )
@@ -73,7 +68,7 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
           setIsExpanded(false)
         }
       } else {
-        const errorMessage = result.message || "Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri."
+        const errorMessage = result?.error || "Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri."
         toast.error(errorMessage)
       }
     } catch (error) {
