@@ -192,7 +192,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'Resume',
-    link: '/portfolioAL.docx',
+    link: '/portfolioAL%20(3).pdf',
   },
 ]
 

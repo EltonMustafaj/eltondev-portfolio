@@ -199,9 +199,8 @@ export default function Personal() {
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                 <a
-                  href="/portfolioAL.docx"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/portfolioAL%20(3).pdf"
+                  download="portfolioAL (3).pdf"
                   className="inline-flex h-11 items-center gap-2 rounded-xl border border-zinc-300 bg-white px-5 text-base font-semibold text-zinc-900 transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
                 >
                   <span>Resume</span>
