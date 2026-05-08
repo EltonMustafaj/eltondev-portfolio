@@ -61,6 +61,15 @@ type Skill = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Maler Maksutaj',
+    description: 'A modern and professional website for painting services, featuring a clean design and responsive interface.',
+    link: 'https://www.maler-maksutaj.at/',
+    linkTab: true,
+    media: '/maler.png',
+    mediaType: 'image',
+    id: 'project-maler',
+  },
+  {
     name: 'Veturaime',
     description: 'Modern web platform for Veturaime with a clean browsing experience and responsive interface.',
     link: 'https://veturaime.online',
