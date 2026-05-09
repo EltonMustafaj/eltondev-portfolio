@@ -264,20 +264,17 @@ export default function Personal() {
             ))}
           </div>
 
-          <div className="space-y-3">
-            {(activeEduTab === 'work' ? WORK : EDUCATION).map((item) => (
-              <a
-                className="block relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] transition hover:-translate-y-0.5 hover:shadow-lg dark:bg-zinc-600/30"
-                href={item.link || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={item.id}
-              >
-                <Spotlight
-                  className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                  size={64}
-                />
-                <div className="relative flex gap-3 sm:gap-4 rounded-2xl bg-white p-4 sm:p-5 ring-1 ring-zinc-200/70 dark:bg-zinc-950 dark:ring-zinc-800/70">
+          <div className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30">
+            <Spotlight
+              className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+              size={64}
+            />
+            <div className="relative rounded-2xl bg-white ring-1 ring-zinc-200/70 dark:bg-zinc-950 dark:ring-zinc-800/70 divide-y divide-zinc-100 dark:divide-zinc-800/70">
+              {(activeEduTab === 'work' ? WORK : EDUCATION).map((item) => (
+                <div
+                  className="flex gap-3 sm:gap-4 p-4 sm:p-5 transition hover:bg-zinc-50/60 dark:hover:bg-zinc-900/40 first:rounded-t-2xl last:rounded-b-2xl"
+                  key={item.id}
+                >
                   <div className="flex h-12 w-12 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-zinc-200/90 dark:bg-zinc-900 dark:ring-zinc-800/80">
                     {item.logo ? (
                       <img src={item.logo} alt={'institution' in item ? item.institution : item.company} className="h-10 w-10 sm:h-14 sm:w-14 object-contain" />
@@ -291,7 +288,7 @@ export default function Personal() {
                         <h4 className="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100 leading-tight">{'program' in item ? item.program : item.role}</h4>
                         <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">{'institution' in item ? item.institution : item.company}</p>
                       </div>
-                      <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">{item.start} - {item.end}</p>
+                      <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">{item.start}{item.start !== item.end ? ` - ${item.end}` : ''}</p>
                     </div>
                     {'details' in item && item.details && (
                       <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.details}</p>
@@ -299,10 +296,23 @@ export default function Personal() {
                     {'summary' in item && item.summary && (
                       <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.summary}</p>
                     )}
+                    {item.link && (
+                      <div className="pt-1">
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 rounded-full bg-zinc-900 px-2.5 py-1 text-xs sm:text-sm font-medium text-white transition hover:bg-zinc-700"
+                        >
+                          <span>Web</span>
+                          <span aria-hidden="true">-&gt;</span>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </a>
-            ))}
+              ))}
+            </div>
           </div>
         </motion.section>
 

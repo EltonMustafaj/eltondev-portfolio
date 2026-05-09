@@ -107,11 +107,21 @@ export const WORK: PracticeItem[] = [
     company: 'QKUK (Main University Clinical Center of Kosovo)',
     role: 'Software Developer (Patient Management System)',
     start: 'Jun 2025',
-    end: 'Present',
+    end: 'Mar 2026',
     link: 'https://shskuk.rks-gov.net/',
     logo: '/assets/qkuk.jpg',
     summary: 'Developing a Patient Management System for QKUK using React (Vite) and Node.js.',
     id: 'work-qkuk',
+  },
+  {
+    company: 'Maksutaj Malermeisterbetrieb',
+    role: 'Web Developer',
+    start: 'May 2026',
+    end: 'May 2026',
+    link: 'https://www.maler-maksutaj.at/',
+    logo: '/maler.png',
+    summary: 'A modern and professional website for painting services, featuring a clean design and responsive interface.',
+    id: 'work-maler',
   },
 ]
 
