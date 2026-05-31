@@ -61,6 +61,15 @@ type Skill = {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Dreshaj Elite Cars',
+    description: 'Designed an automated data pipeline using a custom scraper to fetch Encar.com listings, storing them in a Supabase database and displaying them via a high-performance Next.js UI.',
+    link: 'https://www.dreshajelitecars.com/',
+    linkTab: true,
+    media: '/assets/dreshaj.jpg',
+    mediaType: 'image',
+    id: 'project-dreshaj',
+  },
+  {
     name: 'Maler Maksutaj',
     description: 'A modern and professional website for painting services, featuring a clean design and responsive interface.',
     link: 'https://www.maler-maksutaj.at/',
@@ -104,14 +113,14 @@ export const PROJECTS: Project[] = [
 
 export const WORK: PracticeItem[] = [
   {
-    company: 'QKUK (Main University Clinical Center of Kosovo)',
-    role: 'Software Developer (Patient Management System)',
-    start: 'Jun 2025',
-    end: 'Mar 2026',
-    link: 'https://shskuk.rks-gov.net/',
-    logo: '/assets/qkuk.jpg',
-    summary: 'Developing a Patient Management System for QKUK using React (Vite) and Node.js.',
-    id: 'work-qkuk',
+    company: 'Dreshaj Elite Cars',
+    role: 'Full Stack Web Developer',
+    start: 'Apr 2026',
+    end: 'May 2026',
+    link: 'https://www.dreshajelitecars.com/',
+    logo: '/assets/dreshaj.jpg',
+    summary: 'Built a custom full-stack web application for an auto dealership importing cars from Korea. Designed an automated data pipeline using a custom scraper to fetch Encar.com listings, storing them in a Supabase database and displaying them via a high-performance Next.js UI.',
+    id: 'work-dreshaj',
   },
   {
     company: 'Maksutaj Malermeisterbetrieb',
@@ -123,12 +132,22 @@ export const WORK: PracticeItem[] = [
     summary: 'A modern and professional website for painting services, featuring a clean design and responsive interface.',
     id: 'work-maler',
   },
+  {
+    company: 'QKUK (Main University Clinical Center of Kosovo)',
+    role: 'Software Developer (Patient Management System)',
+    start: 'Jun 2025',
+    end: 'Mar 2026',
+    link: 'https://shskuk.rks-gov.net/',
+    logo: '/assets/qkuk.jpg',
+    summary: 'Developing a Patient Management System for QKUK using React (Vite) and Node.js.',
+    id: 'work-qkuk',
+  },
 ]
 
 export const EDUCATION: EducationItem[] = [
   {
     institution: 'AAB College',
-    program: 'Computer Science - Software Engineering (Year 3)',
+    program: 'Computer Science - Software Engineering',
     start: '2023',
     end: '2026',
     link: 'https://www.aab-edu.net/',
@@ -211,7 +230,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     label: 'Resume',
-    link: '/portfolioAL%20(3).pdf',
+    link: '/portfolioAL.pdf',
   },
 ]
 

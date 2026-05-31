@@ -199,8 +199,8 @@ export default function Personal() {
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                 <a
-                  href="/portfolioAL%20(3).pdf"
-                  download="portfolioAL (3).pdf"
+                  href="/portfolioAL.pdf"
+                  download="portfolioAL.pdf"
                   className="inline-flex h-11 items-center gap-2 rounded-xl border border-zinc-300 bg-white px-5 text-base font-semibold text-zinc-900 transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
                 >
                   <span>Resume</span>
@@ -275,9 +275,13 @@ export default function Personal() {
                   className="flex gap-3 sm:gap-4 p-4 sm:p-5 transition hover:bg-zinc-50/60 dark:hover:bg-zinc-900/40 first:rounded-t-2xl last:rounded-b-2xl"
                   key={item.id}
                 >
-                  <div className="flex h-12 w-12 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-zinc-200/90 dark:bg-zinc-900 dark:ring-zinc-800/80">
+                  <div className="flex h-12 w-12 sm:h-16 sm:w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-zinc-200/90 dark:bg-zinc-900 dark:ring-zinc-800/80">
                     {item.logo ? (
-                      <img src={item.logo} alt={'institution' in item ? item.institution : item.company} className="h-10 w-10 sm:h-14 sm:w-14 object-contain" />
+                      <img 
+                        src={item.logo} 
+                        alt={'institution' in item ? item.institution : item.company} 
+                        className={('company' in item && (item.company === 'Dreshaj Elite Cars' || item.company === 'Maksutaj Malermeisterbetrieb')) ? 'h-full w-full object-cover' : 'h-10 w-10 sm:h-14 sm:w-14 object-contain'} 
+                      />
                     ) : (
                       <div className="text-xs font-medium text-zinc-500">Logo</div>
                     )}

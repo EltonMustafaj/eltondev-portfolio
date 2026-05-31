@@ -14,9 +14,66 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Elton Mustafaj',
+  metadataBase: new URL('https://eltonmustafaj.com'),
+  title: {
+    default: 'Elton Mustafaj — Full-Stack Developer',
+    template: '%s | Elton Mustafaj',
+  },
   description:
-    'Full-Stack Developer from Prishtina, Kosovo. Building modern web and mobile applications.',
+    'Elton Mustafaj is a Full-Stack Developer from Prishtina, Kosovo, specializing in React, Next.js, Node.js, and React Native. Available for freelance web and mobile projects.',
+  keywords: [
+    'Elton Mustafaj',
+    'Full-Stack Developer',
+    'Web Developer',
+    'React Developer',
+    'Next.js',
+    'Node.js',
+    'React Native',
+    'Prishtina',
+    'Kosovo',
+    'Freelance Developer',
+    'Software Engineer',
+  ],
+  authors: [{ name: 'Elton Mustafaj', url: 'https://eltonmustafaj.com' }],
+  creator: 'Elton Mustafaj',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://eltonmustafaj.com',
+    siteName: 'Elton Mustafaj',
+    title: 'Elton Mustafaj — Full-Stack Developer',
+    description:
+      'Full-Stack Developer from Prishtina, Kosovo. Building modern web and mobile applications with React, Next.js, and Node.js.',
+    images: [
+      {
+        url: '/newnewpic.png',
+        width: 1200,
+        height: 630,
+        alt: 'Elton Mustafaj — Full-Stack Developer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Elton Mustafaj — Full-Stack Developer',
+    description:
+      'Full-Stack Developer from Prishtina, Kosovo. Building modern web and mobile applications.',
+    images: ['/newnewpic.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://eltonmustafaj.com',
+  },
 }
 
 const geist = Geist({
@@ -37,6 +94,33 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <Script
+          id="json-ld-person"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Elton Mustafaj',
+              url: 'https://eltonmustafaj.com',
+              image: 'https://eltonmustafaj.com/newnewpic.png',
+              jobTitle: 'Full-Stack Developer',
+              description:
+                'Full-Stack Developer from Prishtina, Kosovo, specializing in React, Next.js, Node.js, and React Native.',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Prishtina',
+                addressCountry: 'XK',
+              },
+              sameAs: [
+                'https://github.com/EltonMustafaj',
+                'https://www.linkedin.com/in/eltonmustafaj/',
+              ],
+              knowsAbout: ['React', 'Next.js', 'Node.js', 'React Native', 'TypeScript', 'Supabase', 'PostgreSQL'],
+            }),
+          }}
+        />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-BBMKZLXSYK`}

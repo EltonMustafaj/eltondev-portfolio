@@ -1,6 +1,22 @@
+import { Metadata } from 'next'
 import { PROJECTS } from '@/app/data'
 import { Github } from 'lucide-react'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description:
+    'A collection of web and mobile projects built by Elton Mustafaj — including full-stack apps, business websites, and interactive UIs.',
+  alternates: {
+    canonical: 'https://eltonmustafaj.com/projects',
+  },
+  openGraph: {
+    title: 'Projects | Elton Mustafaj',
+    description:
+      'A collection of web and mobile projects built by Elton Mustafaj — full-stack apps, business websites, and interactive UIs.',
+    url: 'https://eltonmustafaj.com/projects',
+  },
+}
 
 type ProjectMediaProps = {
   src: string
