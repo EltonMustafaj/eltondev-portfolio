@@ -74,6 +74,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://eltonmustafaj.com',
   },
+  verification: {
+    google: 'DiuUix8gdcuYKK5lT32YO8o3G_ODV3x21Fa-d2sfrVE',
+  },
 }
 
 const geist = Geist({

@@ -10,7 +10,7 @@ import { Spotlight } from '@/components/ui/spotlight'
 import { Download, Github, Linkedin, Mail, XIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import {
   PROJECTS,
   WORK,
@@ -142,6 +142,73 @@ function ProjectMedia({ src, link, zoom = 1, position = 'center' }: ProjectMedia
         </MorphingDialogClose>
       </MorphingDialogContainer>
     </MorphingDialog>
+  )
+}
+
+function CertificateGallery({ images }: { images: string[] }) {
+  const [open, setOpen] = useState(false)
+  const [current, setCurrent] = useState(0)
+
+  const openAt = useCallback((i: number) => { setCurrent(i); setOpen(true) }, [])
+
+  return (
+    <>
+      <button
+        onClick={() => openAt(0)}
+        className="inline-flex items-center gap-1 rounded-full bg-zinc-900 px-2.5 py-1 text-xs sm:text-sm font-medium text-white transition hover:bg-zinc-700"
+      >
+        Certificate
+      </button>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="relative flex flex-col items-center gap-3 w-full max-w-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute -top-9 right-0 rounded-full bg-white p-1"
+            >
+              <XIcon className="h-4 w-4 text-zinc-500" />
+            </button>
+            <img
+              src={images[current]}
+              alt={`Certificate ${current + 1}`}
+              className="w-full max-h-[60vh] rounded-xl object-contain"
+            />
+            {images.length > 1 && (
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setCurrent((c) => (c - 1 + images.length) % images.length)}
+                  className="rounded-full bg-white/20 px-4 py-1.5 text-sm text-white hover:bg-white/30"
+                >
+                  ←
+                </button>
+                <div className="flex gap-2">
+                  {images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrent(i)}
+                      className={`h-2 w-2 rounded-full transition ${i === current ? 'bg-white' : 'bg-white/40'}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={() => setCurrent((c) => (c + 1) % images.length)}
+                  className="rounded-full bg-white/20 px-4 py-1.5 text-sm text-white hover:bg-white/30"
+                >
+                  →
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -280,7 +347,7 @@ export default function Personal() {
                       <img 
                         src={item.logo} 
                         alt={'institution' in item ? item.institution : item.company} 
-                        className={('company' in item && (item.company === 'Dreshaj Elite Cars' || item.company === 'Maksutaj Malermeisterbetrieb')) ? 'h-full w-full object-cover' : 'h-10 w-10 sm:h-14 sm:w-14 object-contain'} 
+                        className={('company' in item && (item.company === 'Dreshaj Elite Cars' || item.company === 'Maksutaj Malermeisterbetrieb')) ? 'h-full w-full object-cover' : ('institution' in item && item.institution === 'KO-in-EU Project (Erasmus+)') ? 'h-full w-full object-cover' : 'h-10 w-10 sm:h-14 sm:w-14 object-contain'} 
                       />
                     ) : (
                       <div className="text-xs font-medium text-zinc-500">Logo</div>
@@ -300,8 +367,8 @@ export default function Personal() {
                     {'summary' in item && item.summary && (
                       <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.summary}</p>
                     )}
-                    {item.link && (
-                      <div className="pt-1">
+                    <div className="pt-1 flex flex-wrap gap-2">
+                      {item.link && (
                         <a
                           href={item.link}
                           target="_blank"
@@ -311,8 +378,11 @@ export default function Personal() {
                           <span>Web</span>
                           <span aria-hidden="true">-&gt;</span>
                         </a>
-                      </div>
-                    )}
+                      )}
+                      {'certificates' in item && item.certificates && item.certificates.length > 0 && (
+                        <CertificateGallery images={item.certificates} />
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

@@ -19,6 +19,7 @@ type EducationItem = {
   link?: string
   logo?: string
   details?: string
+  certificates?: string[]
   id: string
 }
 
@@ -164,6 +165,16 @@ export const EDUCATION: EducationItem[] = [
     logo: '/assets/tectigon.jpg',
     details: 'Completed a full-stack program covering frontend, backend, deployment; certified in Full Stack.',
     id: 'edu-tectigon',
+  },
+  {
+    institution: 'KO-in-EU Project (Erasmus+)',
+    program: 'Assistant Tech — EU Integration Hackathon',
+    start: 'May 2026',
+    end: 'May 2026',
+    logo: '/assets/erasmus-logo.jpg',
+    details: 'Assisted as tech support during a 3-day hackathon co-funded by Erasmus+. Mixed teams of CS and Public Administration students built web solutions on Kosovo\'s EU integration.',
+    certificates: ['/assets/certificate-1.jpeg', '/assets/certificate-2.jpeg'],
+    id: 'edu-erasmus',
   },
 ]
 
