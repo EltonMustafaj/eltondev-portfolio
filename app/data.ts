@@ -173,7 +173,7 @@ export const EDUCATION: EducationItem[] = [
     end: 'May 2026',
     logo: '/assets/erasmus-logo.jpg',
     details: 'Assisted as tech support during a 3-day hackathon co-funded by Erasmus+. Mixed teams of CS and Public Administration students built web solutions on Kosovo\'s EU integration.',
-    certificates: ['/assets/certificate-1.jpeg', '/assets/certificate-2.jpeg'],
+    certificates: ['/assets/certificate-2.jpeg'],
     id: 'edu-erasmus',
   },
 ]
