@@ -1,12 +1,7 @@
 'use client'
-import {
-  MorphingDialog,
-  MorphingDialogClose,
-  MorphingDialogContainer,
-  MorphingDialogContent,
-  MorphingDialogTrigger,
-} from '@/components/ui/morphing-dialog'
+import { ProjectMedia } from '@/components/ui/project-media'
 import { Spotlight } from '@/components/ui/spotlight'
+import Image from 'next/image'
 import { Download, Github, Linkedin, Mail, XIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
@@ -36,113 +31,6 @@ const VARIANTS_SECTION = {
 
 const TRANSITION_SECTION = {
   duration: 0.3,
-}
-
-type ProjectMediaProps = {
-  src: string
-  link?: string
-  zoom?: number
-  position?: string
-}
-
-function ProjectMedia({ src, link, zoom = 1, position = 'center' }: ProjectMediaProps) {
-  const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.indexOf('cloudinary') !== -1;
-  const isImage = src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.png') || src.endsWith('.gif') || src.endsWith('.webp');
-
-  const mediaClassName = 'h-full w-full rounded-xl object-cover object-center'
-
-  const mediaElement = isVideo ? (
-    <div className="aspect-video w-full overflow-hidden rounded-xl">
-      <video
-        src={src}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className={mediaClassName}
-        style={{ transform: `scale(${zoom})`, objectPosition: position }}
-      />
-    </div>
-  ) : isImage ? (
-    <div className="aspect-video w-full overflow-hidden rounded-xl">
-      <img
-        src={src}
-        alt="Project screenshot"
-        className={mediaClassName}
-        style={{ transform: `scale(${zoom})`, objectPosition: position }}
-      />
-    </div>
-  ) : (
-    <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-      No media available
-    </div>
-  )
-
-  if (link) {
-    return (
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block cursor-pointer transition-opacity hover:opacity-90"
-      >
-        {mediaElement}
-      </a>
-    )
-  }
-
-  return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
-    >
-      <MorphingDialogTrigger>
-        <div className="cursor-zoom-in">
-          {mediaElement}
-        </div>
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          {isVideo ? (
-            <video
-              src={src}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-            />
-          ) : isImage ? (
-            <img
-              src={src}
-              alt="Project screenshot"
-              className="aspect-video h-[50vh] w-full rounded-xl object-contain md:h-[70vh]"
-            />
-          ) : (
-            <div className="aspect-video h-[50vh] w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center md:h-[70vh]">
-              No media available
-            </div>
-          )}
-        </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
-          }}
-        >
-          <XIcon className="h-5 w-5 text-zinc-500" />
-        </MorphingDialogClose>
-      </MorphingDialogContainer>
-    </MorphingDialog>
-  )
 }
 
 function CertificateGallery({ images }: { images: string[] }) {
@@ -175,9 +63,12 @@ function CertificateGallery({ images }: { images: string[] }) {
             >
               <XIcon className="h-4 w-4 text-zinc-500" />
             </button>
-            <img
+            <Image
               src={images[current]}
-              alt={`Certificate ${current + 1}`}
+              alt={`Certificate ${current + 1} of ${images.length}`}
+              width={800}
+              height={1160}
+              sizes="(max-width: 640px) 90vw, 384px"
               className="w-full max-h-[60vh] rounded-xl object-contain"
             />
             {images.length > 1 && (
@@ -253,9 +144,13 @@ export default function Personal() {
             <motion.div
               className="h-32 w-32 sm:h-40 sm:w-40 overflow-hidden rounded-2xl ring-2 ring-zinc-200 dark:ring-zinc-800"
             >
-              <img
-                src="/newnewpic.png"
-                alt="Elton Mustafaj"
+              <Image
+                src="/newnewpic.webp"
+                alt="Portrait of Elton Mustafaj"
+                width={160}
+                height={160}
+                priority
+                sizes="(max-width: 768px) 128px, 160px"
                 className="h-full w-full object-cover"
               />
             </motion.div>
@@ -311,7 +206,7 @@ export default function Personal() {
           variants={VARIANTS_SECTION}
           transition={TRANSITION_SECTION}
         >
-          <h3 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">Work & Education</h3>
+          <h2 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">Work & Education</h2>
 
           <div className="mb-4 inline-flex rounded-full bg-zinc-100 p-1 text-xs sm:text-sm font-medium dark:bg-zinc-900">
             {[
@@ -344,9 +239,12 @@ export default function Personal() {
                 >
                   <div className="flex h-12 w-12 sm:h-16 sm:w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-zinc-200/90 dark:bg-zinc-900 dark:ring-zinc-800/80">
                     {item.logo ? (
-                      <img 
-                        src={item.logo} 
-                        alt={'institution' in item ? item.institution : item.company} 
+                      <Image
+                        src={item.logo}
+                        alt={`${'institution' in item ? item.institution : item.company} logo`}
+                        width={64}
+                        height={64}
+                        sizes="64px"
                         className={('company' in item && (item.company === 'Dreshaj Elite Cars' || item.company === 'Maksutaj Malermeisterbetrieb')) ? 'h-full w-full object-cover' : ('institution' in item && item.institution === 'KO-in-EU Project (Erasmus+)') ? 'h-full w-full object-cover' : 'h-10 w-10 sm:h-14 sm:w-14 object-contain'} 
                       />
                     ) : (
@@ -356,7 +254,7 @@ export default function Personal() {
                   <div className="flex-1 min-w-0 space-y-1 sm:space-y-2">
                     <div className="flex flex-col gap-1 sm:gap-2">
                       <div>
-                        <h4 className="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100 leading-tight">{'program' in item ? item.program : item.role}</h4>
+                        <h3 className="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100 leading-tight">{'program' in item ? item.program : item.role}</h3>
                         <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">{'institution' in item ? item.institution : item.company}</p>
                       </div>
                       <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">{item.start}{item.start !== item.end ? ` - ${item.end}` : ''}</p>
@@ -396,7 +294,7 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <div className="mb-4 sm:mb-5 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-            <h3 className="text-base sm:text-lg font-medium">Projects</h3>
+            <h2 className="text-base sm:text-lg font-medium">Projects</h2>
             <Link
               href="/projects"
               className="inline-flex w-full items-center justify-center rounded-full bg-zinc-900 px-3.5 py-1.5 text-xs sm:w-auto sm:text-sm font-semibold text-white transition hover:bg-zinc-700"
@@ -413,9 +311,12 @@ export default function Personal() {
                 <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                   <ProjectMedia
                     src={project.media}
+                    alt={`${project.name} — project screenshot`}
                     link={project.link}
                     zoom={project.mediaZoom}
                     position={project.mediaPosition}
+                    zoomable
+                    priority={index === 0}
                   />
                 </div>
                 <div className="px-1">
@@ -463,7 +364,7 @@ export default function Personal() {
           variants={VARIANTS_SECTION}
           transition={TRANSITION_SECTION}
         >
-          <h3 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">📬 Get In Touch</h3>
+          <h2 className="mb-4 sm:mb-5 text-base sm:text-lg font-medium">📬 Get In Touch</h2>
           <div className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30">
             <Spotlight
               className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
@@ -480,43 +381,6 @@ export default function Personal() {
             </div>
           </div>
         </motion.section>
-
-        {/* <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-3 text-lg font-medium">Accomplishments</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
-        </div>
-      </motion.section> */}
-
       </motion.main>
     </>
   )

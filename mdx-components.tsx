@@ -1,4 +1,5 @@
 import type { MDXComponents } from 'mdx/types'
+import Image from 'next/image'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -14,7 +15,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     }) => {
       return (
         <figure>
-          <img src={src} alt={alt} className="rounded-xl" />
+          <Image
+            src={src}
+            alt={alt}
+            width={1200}
+            height={675}
+            priority
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="mx-auto h-auto max-h-[420px] w-full rounded-xl object-contain"
+          />
           <figcaption className="text-center">{caption}</figcaption>
         </figure>
       )

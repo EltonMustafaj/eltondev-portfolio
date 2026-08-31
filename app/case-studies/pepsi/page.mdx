@@ -1,13 +1,11 @@
-import { CaseStudyCarousel } from '@/components/ui/case-study-carousel'
-
 export const metadata = {
-  title: 'Case Study: Pepsi Albania – Interactive Product Showcase | Elton Mustafaj',
+  title: 'Case Study: Pepsi Albania – Interactive Product Showcase',
   description:
     "A modern, interactive product showcase website for Pepsi with smooth animations and engaging user experience.",
   openGraph: {
     images: [
       {
-        url: '/assets/pepsi-showcase.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Pepsi Albania - Interactive Product Showcase',
@@ -16,12 +14,15 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/assets/pepsi-showcase.jpg'],
+    images: ['/og-image.png'],
+  },
+  alternates: {
+    canonical: 'https://eltonmustafaj.com/case-studies/pepsi',
   },
 }
 
 <Cover
-  src="/assets/pepsi-showcase.jpg"
+  src="/assets/pepsi.webp"
   alt="Pepsi product showcase with blue and black cans"
   caption="Pepsi Albania - Interactive Product Experience"
 />

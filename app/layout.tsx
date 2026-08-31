@@ -10,7 +10,10 @@ import { Toaster } from 'sonner'
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffffff',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#09090b' },
+  ],
 }
 
 export const metadata: Metadata = {
@@ -46,7 +49,7 @@ export const metadata: Metadata = {
       'Full-Stack Developer from Prishtina, Kosovo. Building modern web and mobile applications with React, Next.js, and Node.js.',
     images: [
       {
-        url: '/newnewpic.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Elton Mustafaj — Full-Stack Developer',
@@ -58,7 +61,7 @@ export const metadata: Metadata = {
     title: 'Elton Mustafaj — Full-Stack Developer',
     description:
       'Full-Stack Developer from Prishtina, Kosovo. Building modern web and mobile applications.',
-    images: ['/newnewpic.png'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -107,7 +110,7 @@ export default function RootLayout({
               '@type': 'Person',
               name: 'Elton Mustafaj',
               url: 'https://eltonmustafaj.com',
-              image: 'https://eltonmustafaj.com/newnewpic.png',
+              image: 'https://eltonmustafaj.com/og-image.png',
               jobTitle: 'Full-Stack Developer',
               description:
                 'Full-Stack Developer from Prishtina, Kosovo, specializing in React, Next.js, Node.js, and React Native.',
@@ -151,7 +154,7 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
+          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-geist)]">
             <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-3 sm:px-4 pt-12 sm:pt-20">
               {children}
               <Footer />

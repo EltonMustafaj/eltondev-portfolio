@@ -18,6 +18,8 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
   const [message, setMessage] = useState("")
+  // Honeypot — hidden from users, filled in by most bots.
+  const [website, setWebsite] = useState("")
   const [isExpanded, setIsExpanded] = useState(expandOnMount || alwaysExpanded)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const emailInputRef = useRef<HTMLInputElement>(null)
@@ -37,7 +39,7 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
     setIsSubmitting(true)
 
     if (!email.trim()) {
-      toast.error("Ju lutem vendosni email adresën tuaj")
+      toast.error("Please enter your email address")
       setIsSubmitting(false)
       return
     }
@@ -52,6 +54,7 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
           name: name.trim() || "Anonymous",
           email: email.trim(),
           message: message.trim() || "No message provided",
+          website,
         }),
       })
 
@@ -59,21 +62,24 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
 
       if (response.ok) {
         toast.success(
-          isExpanded ? "Mesazhi juaj u dërgua me sukses!" : "U lidhët me sukses! Do t'ju kontaktoj së shpejti.",
+          isExpanded
+            ? "Your message was sent successfully!"
+            : "Thanks for connecting — I'll get back to you soon.",
         )
         setEmail("")
         setName("")
         setMessage("")
+        setWebsite("")
         if (!alwaysExpanded) {
           setIsExpanded(false)
         }
       } else {
-        const errorMessage = result?.error || "Dështoi dërgimi i mesazhit. Ju lutem provoni përsëri."
+        const errorMessage = result?.error || "Could not send your message. Please try again."
         toast.error(errorMessage)
       }
     } catch (error) {
       console.error("FormSubmit error:", error)
-      toast.error("Ndodhi një gabim i papritur. Ju lutem provoni përsëri.")
+      toast.error("Something went wrong. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -82,6 +88,18 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
   return (
     <div className="w-full">
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+          <label htmlFor="website">Leave this field empty</label>
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setWebsite(e.target.value)}
+          />
+        </div>
         {!isExpanded ? (
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
             <Input
@@ -89,6 +107,7 @@ export function CompactConnectForm({ expandOnMount = false, alwaysExpanded = fal
               name="email"
               inputMode="email"
               autoComplete="email"
+              aria-label="Email address"
               placeholder="your@email.com"
               value={email}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}

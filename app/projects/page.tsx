@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { PROJECTS } from '@/app/data'
 import { Github } from 'lucide-react'
 import Link from 'next/link'
+import { ProjectMedia } from '@/components/ui/project-media'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -18,61 +19,6 @@ export const metadata: Metadata = {
   },
 }
 
-type ProjectMediaProps = {
-  src: string
-  link?: string
-  zoom?: number
-  position?: string
-}
-
-function ProjectMedia({ src, link, zoom = 1, position = 'center' }: ProjectMediaProps) {
-  const isVideo = src.endsWith('.mp4') || src.endsWith('.webm') || src.indexOf('cloudinary') !== -1
-  const isImage = src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.png') || src.endsWith('.gif') || src.endsWith('.webp')
-
-  const mediaClassName = 'h-full w-full rounded-xl object-cover object-center'
-
-  const mediaElement = isVideo ? (
-    <div className="aspect-video w-full overflow-hidden rounded-xl">
-      <video
-        src={src}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className={mediaClassName}
-        style={{ transform: `scale(${zoom})`, objectPosition: position }}
-      />
-    </div>
-  ) : isImage ? (
-    <div className="aspect-video w-full overflow-hidden rounded-xl">
-      <img
-        src={src}
-        alt="Project screenshot"
-        className={mediaClassName}
-        style={{ transform: `scale(${zoom})`, objectPosition: position }}
-      />
-    </div>
-  ) : (
-    <div className="aspect-video w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center">
-      No media available
-    </div>
-  )
-
-  if (link) {
-    return (
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block cursor-pointer transition-opacity hover:opacity-90"
-      >
-        {mediaElement}
-      </a>
-    )
-  }
-
-  return mediaElement
-}
 
 export default function ProjectsPage() {
   return (
@@ -96,16 +42,18 @@ export default function ProjectsPage() {
             <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
               <ProjectMedia
                 src={project.media}
+                alt={`${project.name} — project screenshot`}
                 link={project.link}
                 zoom={project.mediaZoom}
                 position={project.mediaPosition}
+                priority={index < 2}
               />
             </div>
             <div className="px-1">
               <a
                 className="font-base group relative inline-block font-[450] text-sm sm:text-base text-zinc-900 dark:text-zinc-50"
                 href={project.link}
-                {...(project.linkTab && { target: '_blank' })}
+                {...(project.linkTab && { target: '_blank', rel: 'noopener noreferrer' })}
               >
                 {project.name}
                 <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>

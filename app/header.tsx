@@ -48,9 +48,9 @@ export function Header({ onEducationClick }: HeaderProps) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center justify-between sm:block">
           <div>
-            <Link href="/" className="text-xl font-semibold text-black dark:text-white md:text-2xl lg:text-3xl">
-              Elton Mustafaj
-            </Link>
+            <h1 className="text-xl font-semibold text-black md:text-2xl lg:text-3xl dark:text-white">
+              <Link href="/">Elton Mustafaj</Link>
+            </h1>
             <TextEffect
               as="p"
               preset="fade"

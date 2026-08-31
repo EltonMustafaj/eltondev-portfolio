@@ -34,22 +34,6 @@ type PracticeItem = {
   id: string
 }
 
-type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
-}
-
-type CaseStudy = {
-  title: string
-  description: string
-  link: string
-  image: string
-  tags: string[]
-  id: string
-}
-
 type SocialLink = {
   label: string
   link: string
@@ -66,7 +50,7 @@ export const PROJECTS: Project[] = [
     description: 'Designed an automated data pipeline using a custom scraper to fetch Encar.com listings, storing them in a Supabase database and displaying them via a high-performance Next.js UI.',
     link: 'https://www.dreshajelitecars.com/',
     linkTab: true,
-    media: '/assets/dreshaj.jpg',
+    media: '/assets/dreshaj.webp',
     mediaType: 'image',
     id: 'project-dreshaj',
   },
@@ -75,7 +59,7 @@ export const PROJECTS: Project[] = [
     description: 'A modern and professional website for painting services, featuring a clean design and responsive interface.',
     link: 'https://www.maler-maksutaj.at/',
     linkTab: true,
-    media: '/maler.png',
+    media: '/assets/maler.webp',
     mediaType: 'image',
     id: 'project-maler',
   },
@@ -84,7 +68,7 @@ export const PROJECTS: Project[] = [
     description: 'Modern web platform for Veturaime with a clean browsing experience and responsive interface.',
     link: 'https://veturaime.online',
     linkTab: true,
-    media: '/assets/veturaime.jpg',
+    media: '/assets/veturaime.webp',
     mediaType: 'image',
     mediaZoom: 1.4,
     mediaPosition: '58% center',
@@ -96,7 +80,7 @@ export const PROJECTS: Project[] = [
     link: 'https://fronbar.vercel.app/',
     githubLink: 'https://github.com/EltonMustafaj/Fron',
     linkTab: true,
-    media: '/assets/fronbar.png',
+    media: '/assets/fronbar.webp',
     mediaType: 'image',
     id: 'project2',
   },
@@ -106,7 +90,7 @@ export const PROJECTS: Project[] = [
     link: 'https://pepsi-peach.vercel.app/',
     githubLink: 'https://github.com/EltonMustafaj/Pepsi',
     linkTab: true,
-    media: '/assets/pepsi.jpg',
+    media: '/assets/pepsi.webp',
     mediaType: 'image',
     id: 'project3',
   }
@@ -119,7 +103,7 @@ export const WORK: PracticeItem[] = [
     start: 'Apr 2026',
     end: 'May 2026',
     link: 'https://www.dreshajelitecars.com/',
-    logo: '/assets/dreshaj.jpg',
+    logo: '/assets/dreshaj.webp',
     summary: 'Built a custom full-stack web application for an auto dealership importing cars from Korea. Designed an automated data pipeline using a custom scraper to fetch Encar.com listings, storing them in a Supabase database and displaying them via a high-performance Next.js UI.',
     id: 'work-dreshaj',
   },
@@ -129,7 +113,7 @@ export const WORK: PracticeItem[] = [
     start: 'May 2026',
     end: 'May 2026',
     link: 'https://www.maler-maksutaj.at/',
-    logo: '/maler.png',
+    logo: '/assets/maler.webp',
     summary: 'A modern and professional website for painting services, featuring a clean design and responsive interface.',
     id: 'work-maler',
   },
@@ -139,7 +123,7 @@ export const WORK: PracticeItem[] = [
     start: 'Jun 2025',
     end: 'Mar 2026',
     link: 'https://shskuk.rks-gov.net/',
-    logo: '/assets/qkuk.jpg',
+    logo: '/assets/qkuk.webp',
     summary: 'Developing a Patient Management System for QKUK using React (Vite) and Node.js.',
     id: 'work-qkuk',
   },
@@ -152,7 +136,7 @@ export const EDUCATION: EducationItem[] = [
     start: '2023',
     end: '2026',
     link: 'https://www.aab-edu.net/',
-    logo: '/assets/aab.jpg',
+    logo: '/assets/aab.webp',
     details: 'Bachelor studies focused on Software Engineering coursework and projects.',
     id: 'edu-aab',
   },
@@ -171,58 +155,10 @@ export const EDUCATION: EducationItem[] = [
     program: 'Assistant Tech — EU Integration Hackathon',
     start: 'May 2026',
     end: 'May 2026',
-    logo: '/assets/erasmus-logo.jpg',
+    logo: '/assets/erasmus-logo.webp',
     details: 'Assisted as tech support during a 3-day hackathon co-funded by Erasmus+. Mixed teams of CS and Public Administration students built web solutions on Kosovo\'s EU integration.',
-    certificates: ['/assets/certificate-2.jpeg'],
+    certificates: ['/assets/certificate-2.webp'],
     id: 'edu-erasmus',
-  },
-]
-
-export const CASE_STUDIES: CaseStudy[] = [
-  {
-    title: 'Pepsi Albania - Interactive Product Showcase',
-    description: 'Modern, interactive product showcase website for Pepsi with smooth animations and engaging user experience.',
-    link: '/case-studies/pepsi',
-    image: '/assets/pepsi-showcase.jpg',
-    tags: ['Next.js', 'Framer Motion', 'Tailwind CSS'],
-    id: 'case-pepsi',
-  },
-  {
-    title: 'Stock Desk - Internal Stock Management System',
-    description: 'Internal stock lookup and booking system for a multi-store furniture brand to solve stock coordination issues.',
-    link: '/case-studies/stock-desk',
-    image: '/assets/F3/ScreenShot4.png',
-    tags: ['React', 'Node.js', 'ERP Integration'],
-    id: 'case-stock',
-  },
-  {
-    title: 'FFreed - Account Abstraction SDK',
-    description: 'Developer-friendly SDK for Ethereum account abstraction with wallet-less onboarding and gas sponsorship.',
-    link: '/case-studies/ffreed',
-    image: '/assets/ffreed-image.jpg',
-    tags: ['Web3', 'ERC-4337', 'SDK'],
-    id: 'case-ffreed',
-  },
-]
-
-export const BLOG_POSTS: BlogPost[] = [
-  {
-    title: 'Built dev tools for deploying contracts without gas or keys',
-    description: 'Integrated OAuth-based private key schemes',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-1',
-  },
-  {
-    title: 'Built cross-chain tools using PolygonZkEVM, EVM bridges',
-    description: 'Worked on security hooks for Hyperlane',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-2',
-  },
-  {
-    title: 'Deployed ERC721/1155 contracts, built governance + relayers',
-    description: 'Built React token grid UI for on-chain collections',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-3',
   },
 ]
 
