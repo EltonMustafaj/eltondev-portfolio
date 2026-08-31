@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_DEFAULTS } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     canonical: 'https://eltonmustafaj.com/contact',
   },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Contact | Elton Mustafaj',
     description:
       'Get in touch with Elton Mustafaj — Full-Stack Developer in Prishtina, Kosovo.',

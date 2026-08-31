@@ -3,6 +3,7 @@ import { PROJECTS } from '@/app/data'
 import { Github } from 'lucide-react'
 import Link from 'next/link'
 import { ProjectMedia } from '@/components/ui/project-media'
+import { OG_DEFAULTS } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     canonical: 'https://eltonmustafaj.com/projects',
   },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Projects | Elton Mustafaj',
     description:
       'A collection of web and mobile projects built by Elton Mustafaj — full-stack apps, business websites, and interactive UIs.',
@@ -50,14 +52,16 @@ export default function ProjectsPage() {
               />
             </div>
             <div className="px-1">
-              <a
-                className="font-base group relative inline-block font-[450] text-sm sm:text-base text-zinc-900 dark:text-zinc-50"
-                href={project.link}
-                {...(project.linkTab && { target: '_blank', rel: 'noopener noreferrer' })}
-              >
-                {project.name}
-                <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-              </a>
+              <h2 className="text-sm sm:text-base font-[450]">
+                <a
+                  className="font-base group relative inline-block text-zinc-900 dark:text-zinc-50"
+                  href={project.link}
+                  {...(project.linkTab && { target: '_blank', rel: 'noopener noreferrer' })}
+                >
+                  {project.name}
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                </a>
+              </h2>
               <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
                 {project.description}
               </p>

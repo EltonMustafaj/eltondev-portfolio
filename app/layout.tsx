@@ -23,20 +23,7 @@ export const metadata: Metadata = {
     template: '%s | Elton Mustafaj',
   },
   description:
-    'Elton Mustafaj is a Full-Stack Developer from Prishtina, Kosovo, specializing in React, Next.js, Node.js, and React Native. Available for freelance web and mobile projects.',
-  keywords: [
-    'Elton Mustafaj',
-    'Full-Stack Developer',
-    'Web Developer',
-    'React Developer',
-    'Next.js',
-    'Node.js',
-    'React Native',
-    'Prishtina',
-    'Kosovo',
-    'Freelance Developer',
-    'Software Engineer',
-  ],
+    'Full-Stack Developer in Prishtina, Kosovo. I build web and mobile apps with React, Next.js, Node.js and React Native. Available for freelance work.',
   authors: [{ name: 'Elton Mustafaj', url: 'https://eltonmustafaj.com' }],
   creator: 'Elton Mustafaj',
   openGraph: {
@@ -82,6 +69,35 @@ export const metadata: Metadata = {
   },
 }
 
+const PERSON_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Elton Mustafaj',
+  url: 'https://eltonmustafaj.com',
+  image: 'https://eltonmustafaj.com/og-image.png',
+  jobTitle: 'Full-Stack Developer',
+  description:
+    'Full-Stack Developer from Prishtina, Kosovo, specializing in React, Next.js, Node.js, and React Native.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Prishtina',
+    addressCountry: 'XK',
+  },
+  sameAs: [
+    'https://github.com/EltonMustafaj',
+    'https://www.linkedin.com/in/eltonmustafaj/',
+  ],
+  knowsAbout: [
+    'React',
+    'Next.js',
+    'Node.js',
+    'React Native',
+    'TypeScript',
+    'Supabase',
+    'PostgreSQL',
+  ],
+}
+
 const geist = Geist({
   variable: '--font-geist',
   subsets: ['latin'],
@@ -100,33 +116,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script
-          id="json-ld-person"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: 'Elton Mustafaj',
-              url: 'https://eltonmustafaj.com',
-              image: 'https://eltonmustafaj.com/og-image.png',
-              jobTitle: 'Full-Stack Developer',
-              description:
-                'Full-Stack Developer from Prishtina, Kosovo, specializing in React, Next.js, Node.js, and React Native.',
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: 'Prishtina',
-                addressCountry: 'XK',
-              },
-              sameAs: [
-                'https://github.com/EltonMustafaj',
-                'https://www.linkedin.com/in/eltonmustafaj/',
-              ],
-              knowsAbout: ['React', 'Next.js', 'Node.js', 'React Native', 'TypeScript', 'Supabase', 'PostgreSQL'],
-            }),
-          }}
-        />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-BBMKZLXSYK`}
@@ -147,6 +136,12 @@ export default function RootLayout({
       <body
         className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
+        {/* Plain script tag, not next/script: it must be in the server HTML so
+            crawlers that do not run JS (LinkedIn, Facebook, Bing, Slack) see it. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}
+        />
         <Analytics />
         <ThemeProvider
           enableSystem={true}
