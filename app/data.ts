@@ -127,7 +127,7 @@ export const EDUCATION: EducationItem[] = [
     end: '2026',
     link: 'https://www.aab-edu.net/',
     logo: '/assets/aab.webp',
-    details: 'Bachelor studies focused on Software Engineering coursework and projects.',
+    details: "Bachelor's degree in Computer Science with a focus on Software Engineering, built on coursework and hands-on projects.",
     id: 'edu-aab',
   },
   {

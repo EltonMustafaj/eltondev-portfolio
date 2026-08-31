@@ -156,8 +156,10 @@ export default function Personal() {
             </motion.div>
             <div className="flex-1 text-center md:text-left">
               <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
-                21-year-old Computer Science Student focusing on Software Engineering. I develop as a Full Stack Web and Mobile Developer,
-                handling everything from back-end systems to final user interfaces.
+                Full-Stack Developer in Prishtina, Kosovo, with a degree in Computer
+                Science and Software Engineering. I build web and mobile applications
+                end to end — from database design and back-end systems to the interfaces
+                people actually use.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                 <a
